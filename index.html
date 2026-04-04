@@ -4,153 +4,113 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Life Like Me</title>
-  <meta name="description" content="一个把人从网络里轻轻带回现实生活的微仪式产品原型。">
+  <meta name="description" content="一个帮你在现实里先做一件小事、把生活接回来一点的原型。">
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-  <main class="page-shell">
-    <section class="intro-band">
-      <div class="intro-copy">
-        <p class="eyebrow">Life Like Me / Mobile Prototype</p>
-        <h1>不要再给我一个问卷，给我一个能把生活接回来的微仪式。</h1>
-        <p>
-          这版不再把用户当作“待办填写者”，而是当作一个已经很累、很乱、很想逃的人。
-          目标不是让他在应用里待久一点，而是让他在现实里动起来一点。
-        </p>
-      </div>
-      <div class="intro-note">
-        <p class="note-label">这次重做的重点</p>
-        <ul>
-          <li>从表单交互改成被带着走的流动体验</li>
-          <li>从“一次使用”改成“我下次还愿意回来”</li>
-          <li>从任务推荐改成现实微仪式</li>
-        </ul>
-      </div>
-    </section>
+  <main class="app-shell">
+    <section class="app-frame">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Life Like Me</p>
+          <h1>先让眼前轻一点。</h1>
+          <p class="subtitle">不用一下子变好。先做一件现实里的小事就够了。</p>
+        </div>
+        <button class="ghost-pill" id="savedEntry" type="button">留给下次的办法</button>
+      </header>
 
-    <section class="experience-grid">
-      <section class="phone-stage">
-        <div class="phone-shell">
-          <div class="phone-topbar">
-            <div>
-              <p class="top-label">今天先把哪一块生活接回来？</p>
-              <h2 class="top-title">不是变好一点，是先回来一点。</h2>
-            </div>
-            <div class="return-chip" id="returnChip">最近救回自己 0 次</div>
+      <div class="progress-row">
+        <div class="progress-dot is-active" data-progress="0"></div>
+        <div class="progress-dot" data-progress="1"></div>
+        <div class="progress-dot" data-progress="2"></div>
+        <div class="progress-dot" data-progress="3"></div>
+      </div>
+
+      <section class="screen is-active" data-screen="state">
+        <p class="screen-kicker">你现在最像哪一种</p>
+        <div class="card-list" id="stateCards"></div>
+        <button class="text-button" id="quickDecide" type="button">我现在不想想太多，你直接给我一个</button>
+      </section>
+
+      <section class="screen" data-screen="scene">
+        <p class="screen-kicker">现在最卡的是哪一块</p>
+        <h2 class="screen-title" id="sceneHeading">我先知道你是卡在哪。</h2>
+        <div class="card-list" id="sceneCards"></div>
+        <button class="text-button" id="skipScene" type="button">这一题我不想答，你替我判断</button>
+      </section>
+
+      <section class="screen" data-screen="support">
+        <p class="screen-kicker">这一次，你想被怎么帮</p>
+        <div class="support-grid" id="supportCards"></div>
+      </section>
+
+      <section class="screen" data-screen="ritual">
+        <div class="meta-row">
+          <span class="meta-pill" id="statePill">状态：未选择</span>
+          <span class="meta-pill" id="scenePill">场景：未选择</span>
+        </div>
+        <p class="screen-kicker">给你的这一件事</p>
+        <h2 class="ritual-title" id="ritualTitle">先选前面的内容，我再把这一件事递给你。</h2>
+        <p class="ritual-copy" id="ritualCopy">我不会让你一下跳出当前状态，也不会硬塞一个不贴合的动作给你。</p>
+
+        <div class="ritual-box">
+          <div class="ritual-focus">
+            <p class="ritual-label">现在只做这一件</p>
+            <ol class="ritual-steps" id="ritualSteps">
+              <li>先选一个状态</li>
+              <li>再选一下眼前最卡的地方</li>
+              <li>再告诉我这次你更想被怎么帮</li>
+            </ol>
           </div>
 
-          <div class="progress-strip">
-            <div class="progress-dot is-active" data-step-dot="0"></div>
-            <div class="progress-dot" data-step-dot="1"></div>
-            <div class="progress-dot" data-step-dot="2"></div>
-            <div class="progress-dot" data-step-dot="3"></div>
+          <div class="ritual-side">
+            <p class="timer-label">给自己多久</p>
+            <div class="timer-chips" id="timerChips"></div>
+            <div class="timer-block">
+              <p class="timer-time" id="timerValue">02:00</p>
+              <p class="timer-note" id="timerNote">这次只做一个小回合，不扩展。</p>
+            </div>
           </div>
+        </div>
 
-          <section class="panel hero-panel is-active" data-step="0">
-            <p class="panel-kicker">Step 1 / 状态进入</p>
-            <h3>你现在最像哪一种？</h3>
-            <p class="panel-copy">不用想得太对。选最接近的那个就行。</p>
-            <div class="state-stack" id="stateCards"></div>
-          </section>
-
-          <section class="panel scene-panel" data-step="1">
-            <p class="panel-kicker">Step 2 / 现实落点</p>
-            <h3>你现在最卡的是哪里？</h3>
-            <p class="panel-copy">不是泛泛地说“我很乱”，而是这一刻最难受的是哪一块现实。</p>
-            <div class="scene-grid" id="sceneCards"></div>
-          </section>
-
-          <section class="panel support-panel" data-step="2">
-            <p class="panel-kicker">Step 3 / 帮法选择</p>
-            <h3>这一次，你想怎么被帮？</h3>
-            <p class="panel-copy">你只选这一刻需要的帮法，不需要一次把自己修好。</p>
-            <div class="support-list" id="supportCards"></div>
-          </section>
-
-          <section class="panel ritual-panel" data-step="3">
-            <div class="ritual-meta">
-              <span class="meta-pill" id="statePill">状态：未选择</span>
-              <span class="meta-pill" id="scenePill">场景：未选择</span>
-            </div>
-
-            <p class="panel-kicker">Step 4 / 现实微仪式</p>
-            <h3 class="ritual-title" id="ritualTitle">先选前面的状态，我再把这一刻的微仪式递给你。</h3>
-            <p class="ritual-subtitle" id="ritualSubtitle">这次不是问卷终点，而是一次现实中的开始。</p>
-
-            <div class="ritual-card">
-              <div class="ritual-body">
-                <p class="ritual-body-kicker">现在只做这一件</p>
-                <ol class="ritual-steps" id="ritualSteps">
-                  <li>先选你现在最接近的状态</li>
-                  <li>再告诉我现实里最卡的是哪里</li>
-                  <li>再选这次你想怎么被帮</li>
-                </ol>
-              </div>
-              <div class="ritual-footer">
-                <p class="timer-label">这次给自己多久？</p>
-                <div class="timer-row" id="timerChips"></div>
-                <div class="timer-box">
-                  <div>
-                    <p class="timer-caption">现在这个微仪式会持续</p>
-                    <p class="timer-value" id="timerValue">02:00</p>
-                  </div>
-                  <div class="timer-actions">
-                    <button class="button button-primary" id="startButton" type="button">开始这次微仪式</button>
-                    <button class="button button-secondary" id="lighterButton" type="button">太重了，换更轻的</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="live-prompt" id="livePrompt">
-              <p>先做这一件就够了。做完停下，也算把自己接回来了一点。</p>
-            </div>
-
-            <div class="completion-panel" id="completionPanel">
-              <p class="completion-kicker">做完以后，现实里有什么变了？</p>
-              <div class="completion-options" id="completionOptions"></div>
-              <div class="completion-result" id="completionResult"></div>
-            </div>
-          </section>
-
-          <section class="panel revisit-panel">
-            <div class="revisit-head">
-              <div>
-                <p class="panel-kicker">下次为什么还会回来</p>
-                <h3>这不是一次性的问卷，而是你的“救命包”。</h3>
-              </div>
-              <button class="button button-ghost" id="savePackButton" type="button">把这次存进我的救命包</button>
-            </div>
-            <div class="saved-packs" id="savedPacks"></div>
-          </section>
+        <div class="action-row">
+          <button class="primary-button" id="startButton" type="button">开始这一次</button>
+          <button class="secondary-button" id="lighterButton" type="button">换成更轻一点的</button>
         </div>
       </section>
 
-      <aside class="strategy-column">
-        <section class="strategy-card">
-          <p class="strategy-kicker">为什么上一版太浅</p>
-          <ul>
-            <li>它让用户回答问题，但没有让用户感觉自己被接住。</li>
-            <li>它只有“推荐任务”，没有“带着你开始”的微仪式感。</li>
-            <li>它没有留下“下次我可以回来这里”的理由。</li>
-          </ul>
-        </section>
+      <section class="screen focus-screen" data-screen="focus">
+        <p class="screen-kicker">现在先别往后想</p>
+        <h2 class="focus-title" id="focusTitle">就做这一件。</h2>
+        <p class="focus-copy" id="focusCopy">做完停下，也算把自己接回来了一点。</p>
+        <div class="focus-timer" id="focusTimer">02:00</div>
+        <div class="focus-step" id="focusStep">先把注意力放回眼前。</div>
+        <div class="action-row">
+          <button class="primary-button" id="doneButton" type="button">我做完了</button>
+          <button class="secondary-button" id="pauseButton" type="button">我就做到这里</button>
+        </div>
+      </section>
 
-        <section class="strategy-card">
-          <p class="strategy-kicker">这版故意学到的东西</p>
-          <ul>
-            <li>像 Finch 一样给人柔软的进入感，而不是表单压迫感。</li>
-            <li>像 Fabulous 一样有被带着前进的节奏，而不是扔一个答案给你。</li>
-            <li>像 Goblin Tools 一样降低启动门槛，但我们更强调“回到现实”而不是单纯拆任务。</li>
-            <li>像 Sweepy 一样承认现实环境和可用精力，但不把它做成家务管理软件。</li>
-          </ul>
-        </section>
+      <section class="screen" data-screen="complete">
+        <p class="screen-kicker">现在现实里有什么变了</p>
+        <div class="completion-list" id="completionList"></div>
+        <div class="afterglow" id="afterglow"></div>
+        <div class="action-row">
+          <button class="primary-button" id="saveMethod" type="button">把这个办法留到下次</button>
+          <button class="secondary-button" id="restartButton" type="button">再来一次</button>
+        </div>
+      </section>
 
-        <section class="strategy-card">
-          <p class="strategy-kicker">产品灵魂不能丢</p>
-          <p>一切设计都要服从这个原则：<strong>让用户更快回到生活，而不是更久留在产品里。</strong></p>
-        </section>
-      </aside>
+      <section class="saved-sheet" id="savedSheet">
+        <div class="saved-sheet-head">
+          <div>
+            <p class="screen-kicker">下次可以直接从这里开始</p>
+            <h2 class="sheet-title">留给下次的办法</h2>
+          </div>
+          <button class="ghost-pill" id="closeSaved" type="button">收起</button>
+        </div>
+        <div class="saved-list" id="savedList"></div>
+      </section>
     </section>
   </main>
 
