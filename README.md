@@ -1,9 +1,16 @@
 # Life Like Me
 
-`Life Like Me` is a static prototype for a reality-first healing product.
+`Life Like Me` is a static prototype for a reality-first micro-action product.
 
 It is not a habit tracker and not a content app.
-Its goal is to help low-energy users return to real life through one small, concrete action.
+Its goal is to help different user groups return to real life through one small, concrete action, with different language and recommendation logic for:
+
+- low-energy users
+- procrastination-heavy users
+- irritated / overloaded users
+- users who simply want to "get life back in order"
+
+The prototype also includes an annoyance inbox so recommendations can use the user's own real-life material instead of only generic prompts.
 
 ## Structure
 

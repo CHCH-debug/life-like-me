@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Life Like Me</title>
-  <meta name="description" content="一个帮你在现实里先做一件小事、把生活接回来一点的原型。">
+  <meta name="description" content="一个会按不同人群切换语气，并结合真实烦心事素材来给出现实入口动作的原型。">
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
       <header class="app-header">
         <div>
           <p class="eyebrow">Life Like Me</p>
-          <h1>先让眼前轻一点。</h1>
-          <p class="subtitle">不用一下子变好。先做一件现实里的小事就够了。</p>
+          <h1>先把生活接回来一点。</h1>
+          <p class="subtitle">同一个功能，不该用同一种语气对所有人说话。这里会按你这次的状态和人群模式来给方法。</p>
         </div>
         <div class="header-actions">
           <button class="ghost-pill" id="inboxEntry" type="button">先把烦心事放这里</button>
@@ -30,39 +30,75 @@
       </div>
 
       <section class="screen is-active" data-screen="state">
-        <p class="screen-kicker">你现在最像哪一种</p>
+        <section class="mode-panel">
+          <div class="mode-copy">
+            <p class="screen-kicker">先选这次更接近哪种使用模式</p>
+            <h2 class="screen-title compact">同一个功能，不该对所有人都用“我很累、我很乱”这一套。</h2>
+            <p class="subtitle" id="profileSummary"></p>
+          </div>
+          <div class="persona-grid" id="profileCards"></div>
+        </section>
+
+        <section class="insight-panel">
+          <div>
+            <p class="insight-label">这次的语言基调</p>
+            <p class="insight-copy" id="toneHint"></p>
+          </div>
+          <div>
+            <p class="insight-label">收集箱近况</p>
+            <div class="insight-chips" id="inboxStats"></div>
+          </div>
+        </section>
+
+        <p class="screen-kicker" id="stateKicker">你现在更接近哪一种</p>
+        <h2 class="screen-title compact" id="stateHeading">先选这次更接近你的入口。</h2>
         <div class="card-list" id="stateCards"></div>
         <button class="text-button" id="quickDecide" type="button">我现在不想想太多，你直接给我一个</button>
       </section>
 
       <section class="screen" data-screen="scene">
-        <p class="screen-kicker">现在最卡的是哪一块</p>
+        <p class="screen-kicker" id="sceneKicker">现在最卡的是哪一块</p>
         <h2 class="screen-title" id="sceneHeading">我先知道你是卡在哪。</h2>
         <div class="card-list" id="sceneCards"></div>
         <button class="text-button" id="skipScene" type="button">这一题我不想答，你替我判断</button>
       </section>
 
       <section class="screen" data-screen="support">
-        <p class="screen-kicker">这一次，你想被怎么帮</p>
+        <p class="screen-kicker" id="supportKicker">这一次，你想被怎么帮</p>
+        <h2 class="screen-title compact" id="supportHeading">我会按你的模式来收窄建议。</h2>
         <div class="support-grid" id="supportCards"></div>
       </section>
 
       <section class="screen" data-screen="ritual">
         <div class="meta-row">
+          <span class="meta-pill" id="profilePill">模式：回正模式</span>
           <span class="meta-pill" id="statePill">状态：未选择</span>
           <span class="meta-pill" id="scenePill">场景：未选择</span>
         </div>
+
+        <div class="analysis-card">
+          <p class="screen-kicker">这次的判断</p>
+          <p class="analysis-copy" id="analysisCopy">先选前面的内容，我再解释为什么这条建议更适合你。</p>
+          <div class="reason-chips" id="reasonChips"></div>
+        </div>
+
+        <div class="reality-card" id="realityCard" hidden>
+          <p class="screen-kicker">参考了你的现实素材</p>
+          <h3 class="reality-title" id="realityTitle">还没有引用收集箱内容</h3>
+          <p class="card-desc" id="realityCopy"></p>
+        </div>
+
         <p class="screen-kicker">给你的这一件事</p>
         <h2 class="ritual-title" id="ritualTitle">先选前面的内容，我再把这一件事递给你。</h2>
-        <p class="ritual-copy" id="ritualCopy">我不会让你一下跳出当前状态，也不会硬塞一个不贴合的动作给你。</p>
+        <p class="ritual-copy" id="ritualCopy">这里不会把同一种语言和方法塞给所有人。</p>
 
         <div class="ritual-box">
           <div class="ritual-focus">
             <p class="ritual-label">现在只做这一件</p>
             <ol class="ritual-steps" id="ritualSteps">
-              <li>先选一个状态</li>
-              <li>再选一下眼前最卡的地方</li>
-              <li>再告诉我这次你更想被怎么帮</li>
+              <li>先选这次更接近你的人群模式</li>
+              <li>再选眼前最卡的地方</li>
+              <li>再告诉我你更希望我怎么帮</li>
             </ol>
           </div>
 
@@ -103,38 +139,44 @@
           <button class="secondary-button" id="restartButton" type="button">再来一次</button>
         </div>
       </section>
-
-      <section class="saved-sheet" id="savedSheet">
-        <div class="saved-sheet-head">
-          <div>
-            <p class="screen-kicker">下次可以直接从这里开始</p>
-            <h2 class="sheet-title">留给下次的办法</h2>
-          </div>
-          <button class="ghost-pill" id="closeSaved" type="button">收起</button>
-        </div>
-        <div class="saved-list" id="savedList"></div>
-      </section>
-
-      <section class="saved-sheet" id="inboxSheet">
-        <div class="saved-sheet-head">
-          <div>
-            <p class="screen-kicker">先把它放在这里</p>
-            <h2 class="sheet-title">烦心事收集箱</h2>
-          </div>
-          <button class="ghost-pill" id="closeInbox" type="button">收起</button>
-        </div>
-        <div class="inbox-form">
-          <label class="inbox-label" for="annoyanceInput">最近一直挂在你心里的小事</label>
-          <textarea id="annoyanceInput" class="inbox-textarea" placeholder="比如：一直没回的消息、床边那堆衣服、还没处理的快递箱……"></textarea>
-          <div class="action-row">
-            <button class="primary-button" id="saveAnnoyance" type="button">先放进去</button>
-            <button class="secondary-button" id="pickFromInbox" type="button">从里面替我挑一个</button>
-          </div>
-        </div>
-        <div class="saved-list" id="inboxList"></div>
-      </section>
     </section>
   </main>
+
+  <button class="sheet-backdrop" id="sheetBackdrop" type="button" aria-label="关闭弹层"></button>
+
+  <section class="overlay-sheet" id="savedSheet" aria-hidden="true">
+    <div class="saved-sheet-head">
+      <div>
+        <p class="screen-kicker">下次可以直接从这里开始</p>
+        <h2 class="sheet-title">留给下次的办法</h2>
+      </div>
+      <button class="ghost-pill" id="closeSaved" type="button">收起</button>
+    </div>
+    <div class="saved-list" id="savedList"></div>
+  </section>
+
+  <section class="overlay-sheet" id="inboxSheet" aria-hidden="true">
+    <div class="saved-sheet-head">
+      <div>
+        <p class="screen-kicker">先把真实烦点存下来</p>
+        <h2 class="sheet-title">烦心事收集箱</h2>
+      </div>
+      <button class="ghost-pill" id="closeInbox" type="button">收起</button>
+    </div>
+    <div class="inbox-toolbar">
+      <p class="card-desc" id="inboxHelper">它会做粗分，不会把你的输入当成心理诊断。</p>
+      <div class="insight-chips" id="inboxCategorySummary"></div>
+    </div>
+    <div class="inbox-form">
+      <label class="inbox-label" for="annoyanceInput">最近一直挂在你心里的小事</label>
+      <textarea id="annoyanceInput" class="inbox-textarea" placeholder="比如：一直没回的消息、床边那堆衣服、还没处理的快递箱、明天要带的文件……"></textarea>
+      <div class="action-row">
+        <button class="primary-button" id="saveAnnoyance" type="button">先放进去</button>
+        <button class="secondary-button" id="pickFromInbox" type="button">从里面替我挑一个</button>
+      </div>
+    </div>
+    <div class="saved-list" id="inboxList"></div>
+  </section>
 
   <script src="./assets/app.js"></script>
 </body>
