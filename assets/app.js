@@ -218,7 +218,11 @@ const ids = {
   afterglow: document.getElementById("afterglow"),
   savedList: document.getElementById("savedList"),
   savedSheet: document.getElementById("savedSheet"),
+  inboxSheet: document.getElementById("inboxSheet"),
+  inboxList: document.getElementById("inboxList"),
+  annoyanceInput: document.getElementById("annoyanceInput"),
   returnChip: document.getElementById("savedEntry"),
+  inboxEntry: document.getElementById("inboxEntry"),
   sceneHeading: document.getElementById("sceneHeading"),
 };
 
@@ -466,12 +470,102 @@ function toggleSaved(force) {
   if (willOpen) renderSavedList();
 }
 
+function toggleInbox(force) {
+  const willOpen = typeof force === "boolean" ? force : !ids.inboxSheet.classList.contains("is-open");
+  ids.inboxSheet.classList.toggle("is-open", willOpen);
+  if (willOpen) renderInboxList();
+}
+
 function getSaved() {
   try {
     return JSON.parse(localStorage.getItem("llm-saved-methods")) ?? [];
   } catch {
     return [];
   }
+}
+
+function getInbox() {
+  try {
+    return JSON.parse(localStorage.getItem("llm-annoyance-inbox")) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+function renderInboxList() {
+  const items = getInbox();
+  if (items.length === 0) {
+    ids.inboxList.innerHTML = `
+      <div class="saved-card empty">
+        <div class="saved-title">这里还没有内容</div>
+        <p class="card-desc">状态还可以的时候，把最近烦你的几件小事先放进来。以后你不想解释太多时，我就能更贴着你的现实帮你。</p>
+      </div>
+    `;
+    return;
+  }
+
+  ids.inboxList.innerHTML = items.map((item) => `
+    <button class="saved-card" type="button" data-annoyance="${item.id}">
+      <div class="saved-head">
+        <span class="saved-title">${item.text}</span>
+        <span class="tag">${item.createdAtLabel}</span>
+      </div>
+    </button>
+  `).join("");
+}
+
+function saveAnnoyance() {
+  const text = ids.annoyanceInput.value.trim();
+  if (!text) return;
+  const items = getInbox();
+  items.unshift({
+    id: String(Date.now()),
+    text,
+    createdAtLabel: "刚刚放进来",
+  });
+  localStorage.setItem("llm-annoyance-inbox", JSON.stringify(items.slice(0, 20)));
+  ids.annoyanceInput.value = "";
+  renderInboxList();
+}
+
+function useInboxForDecision() {
+  const items = getInbox();
+  if (items.length === 0) return;
+  const picked = items[0];
+  state.pickedState = "stuck";
+  state.pickedScene = "message";
+  state.pickedSupport = "clear";
+  state.activeRitual = {
+    id: "from-inbox",
+    title: "先碰一下这件一直挂着的事",
+    copy: `不用把它解决。先只碰一下：${picked.text}`,
+    steps: [
+      `把这件事只做一个入口动作：${picked.text}`,
+      "如果入口动作也太重，就把它再切小一点。",
+      "做到这里就停，不要求你今天解决完。"
+    ],
+    lighter: {
+      title: "只把它从脑子里拿出来",
+      copy: `这次更轻一点：先只看见它，不要求处理完。`,
+      steps: [`把这件事写在纸上或打开它：${picked.text}`, "做到这里就停。"]
+    },
+    complete: [
+      "我终于碰到它了",
+      "它没刚才那么压我了",
+      "至少它不再只是在我脑子里"
+    ],
+    after: [
+      "有些烦心事一碰到，重量就会先掉一点。",
+      "今天你不一定要解决它，但你已经不再完全躲着它。"
+    ]
+  };
+  state.lighterMode = false;
+  renderStateCards();
+  renderSceneCards();
+  renderSupportCards();
+  renderRitual();
+  toggleInbox(false);
+  setStep("ritual", 3);
 }
 
 function findTitle(list, id) {
@@ -531,6 +625,10 @@ document.getElementById("restartButton").addEventListener("click", () => {
 });
 document.getElementById("savedEntry").addEventListener("click", () => toggleSaved(true));
 document.getElementById("closeSaved").addEventListener("click", () => toggleSaved(false));
+document.getElementById("inboxEntry").addEventListener("click", () => toggleInbox(true));
+document.getElementById("closeInbox").addEventListener("click", () => toggleInbox(false));
+document.getElementById("saveAnnoyance").addEventListener("click", saveAnnoyance);
+document.getElementById("pickFromInbox").addEventListener("click", useInboxForDecision);
 
 ids.returnChip.textContent = `留给下次的办法 ${getSaved().length} 个`;
 renderStateCards();
@@ -538,3 +636,4 @@ renderSceneCards();
 renderSupportCards();
 renderRitual();
 renderSavedList();
+renderInboxList();

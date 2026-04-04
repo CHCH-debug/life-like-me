@@ -55,6 +55,12 @@ body {
   margin-bottom: 16px;
 }
 
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .eyebrow,
 .screen-kicker {
   margin: 0 0 10px;
@@ -339,6 +345,35 @@ h1 { font-size: clamp(30px, 5vw, 40px); margin-bottom: 8px; }
   margin-bottom: 12px;
 }
 
+.inbox-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.inbox-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.inbox-textarea {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  border: 1px solid rgba(216, 199, 182, 0.92);
+  border-radius: 18px;
+  padding: 14px;
+  font: inherit;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.inbox-textarea:focus {
+  outline: 2px solid rgba(201, 107, 74, 0.22);
+  border-color: rgba(201, 107, 74, 0.4);
+}
+
 .saved-card.empty {
   cursor: default;
   border-style: dashed;
@@ -365,7 +400,8 @@ h1 { font-size: clamp(30px, 5vw, 40px); margin-bottom: 8px; }
     padding: 14px;
   }
   .app-header,
-  .saved-sheet-head { display: grid; }
+  .saved-sheet-head,
+  .header-actions { display: grid; }
   .ghost-pill,
   .primary-button,
   .secondary-button,

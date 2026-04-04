@@ -16,7 +16,10 @@
           <h1>先让眼前轻一点。</h1>
           <p class="subtitle">不用一下子变好。先做一件现实里的小事就够了。</p>
         </div>
-        <button class="ghost-pill" id="savedEntry" type="button">留给下次的办法</button>
+        <div class="header-actions">
+          <button class="ghost-pill" id="inboxEntry" type="button">先把烦心事放这里</button>
+          <button class="ghost-pill" id="savedEntry" type="button">留给下次的办法</button>
+        </div>
       </header>
 
       <div class="progress-row">
@@ -110,6 +113,25 @@
           <button class="ghost-pill" id="closeSaved" type="button">收起</button>
         </div>
         <div class="saved-list" id="savedList"></div>
+      </section>
+
+      <section class="saved-sheet" id="inboxSheet">
+        <div class="saved-sheet-head">
+          <div>
+            <p class="screen-kicker">先把它放在这里</p>
+            <h2 class="sheet-title">烦心事收集箱</h2>
+          </div>
+          <button class="ghost-pill" id="closeInbox" type="button">收起</button>
+        </div>
+        <div class="inbox-form">
+          <label class="inbox-label" for="annoyanceInput">最近一直挂在你心里的小事</label>
+          <textarea id="annoyanceInput" class="inbox-textarea" placeholder="比如：一直没回的消息、床边那堆衣服、还没处理的快递箱……"></textarea>
+          <div class="action-row">
+            <button class="primary-button" id="saveAnnoyance" type="button">先放进去</button>
+            <button class="secondary-button" id="pickFromInbox" type="button">从里面替我挑一个</button>
+          </div>
+        </div>
+        <div class="saved-list" id="inboxList"></div>
       </section>
     </section>
   </main>
