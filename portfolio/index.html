@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>陈欢 | Personal Website</title>
+  <meta
+    name="description"
+    content="陈欢的个人网站：交互原型、自动化工作流、AI 工具包装与真实项目展示。"
+  >
+  <meta name="theme-color" content="#f4efe8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./assets/site.css?v=20260420a">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="ambient ambient-left" aria-hidden="true"></div>
+    <div class="ambient ambient-right" aria-hidden="true"></div>
+    <div class="pointer-glow" id="pointerGlow" aria-hidden="true"></div>
+
+    <header class="topbar reveal">
+      <a class="brand" href="#top" aria-label="陈欢个人网站首页">
+        <span class="brand-mark">CH</span>
+        <span class="brand-copy">
+          <strong>陈欢</strong>
+          <span>Huan Chen</span>
+        </span>
+      </a>
+
+      <nav class="topnav" aria-label="主导航">
+        <a href="#projects">项目</a>
+        <a href="#timeline">路径</a>
+        <a href="#capabilities">能力</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero reveal">
+        <div class="hero-copy">
+          <p class="eyebrow">Personal website / product-facing portfolio</p>
+          <div class="mode-switch" id="modeSwitch" role="tablist" aria-label="切换当前展示重点"></div>
+          <h1 id="heroTitle">把模糊需求做成能演示、能点击、能说服人的交互原型。</h1>
+          <p class="hero-summary" id="heroSummary">
+            我做的不只是页面，更是把结构、节奏、文案和真实使用感一起落下来。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">看项目</a>
+            <button class="button button-secondary" id="copyEmail" type="button">复制邮箱</button>
+            <a class="button button-ghost" href="https://github.com/CHCH-debug" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+
+          <div class="metric-strip" id="metricStrip" aria-label="重点指标"></div>
+        </div>
+
+        <aside class="hero-panel">
+          <article class="identity-card">
+            <div class="portrait-shell">
+              <img src="./assets/portrait-placeholder.svg" alt="陈欢个人形象卡片">
+              <div class="portrait-ring portrait-ring-a" aria-hidden="true"></div>
+              <div class="portrait-ring portrait-ring-b" aria-hidden="true"></div>
+            </div>
+
+            <div class="identity-copy">
+              <p class="mini-label">Current focus</p>
+              <h2 id="identityTitle">Prototype Builder</h2>
+              <p id="identitySummary">
+                适合需要短周期、强演示感、移动端可直接打开体验的项目。
+              </p>
+            </div>
+          </article>
+
+          <div class="signal-grid" id="signalGrid" aria-label="当前展示信号"></div>
+        </aside>
+      </section>
+
+      <section class="ticker reveal" aria-label="证据条">
+        <div class="ticker-track" id="tickerTrack"></div>
+      </section>
+
+      <section class="section reveal" id="projects">
+        <div class="section-heading">
+          <p class="section-kicker">Selected work</p>
+          <div>
+            <h2>真实项目，不拿空概念撑场面。</h2>
+            <p>
+              下面这些是当前最适合公开展示的项目：有清晰边界、有真实用途、也能直接解释我擅长把什么做出来。
+            </p>
+          </div>
+        </div>
+
+        <div class="project-layout">
+          <div class="project-stack" id="projectStack" role="listbox" aria-label="项目列表"></div>
+
+          <article class="project-detail">
+            <div class="project-meta">
+              <span class="project-tag" id="projectTag">Prototype</span>
+              <span class="project-year" id="projectYear">2026</span>
+            </div>
+            <h3 id="projectTitle">Life Like Me</h3>
+            <p class="project-summary" id="projectSummary"></p>
+            <ul class="project-points" id="projectPoints"></ul>
+            <div class="project-links" id="projectLinks"></div>
+          </article>
+        </div>
+
+        <div class="deck-controls">
+          <button class="deck-button" id="projectPrev" type="button" aria-label="上一个项目">Prev</button>
+          <div class="deck-index" id="projectIndex">01 / 04</div>
+          <button class="deck-button" id="projectNext" type="button" aria-label="下一个项目">Next</button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="timeline">
+        <div class="section-heading">
+          <p class="section-kicker">Trajectory</p>
+          <div>
+            <h2>从数据、运营到工作流与产品感。</h2>
+            <p>
+              我的路径不是单线条。它更像是把数据分析、业务执行、内容增长和 AI 工具逐步压到同一套交付逻辑里。
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-layout">
+          <div class="timeline-tabs" id="timelineTabs" role="tablist" aria-label="阶段切换"></div>
+
+          <label class="timeline-range-wrap" for="timelineRange">
+            <span>Drag the thread</span>
+            <input id="timelineRange" class="timeline-range" type="range" min="0" max="4" step="1" value="0">
+          </label>
+
+          <article class="timeline-card">
+            <p class="timeline-period" id="timelinePeriod">2021 - 2025</p>
+            <h3 id="timelineTitle">经济统计训练</h3>
+            <p class="timeline-copy" id="timelineCopy"></p>
+            <div class="timeline-evidence" id="timelineEvidence"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="capabilities">
+        <div class="section-heading">
+          <p class="section-kicker">Capability map</p>
+          <div>
+            <h2>我更擅长把这四层接起来。</h2>
+            <p>
+              不是只会写一段代码，也不是只会写一份方案。更强的部分，是把输入、判断、界面和交付连成一个完整动作。
+            </p>
+          </div>
+        </div>
+
+        <div class="capability-layout">
+          <div class="capability-grid" id="capabilityGrid"></div>
+          <article class="capability-story">
+            <p class="mini-label">Why it works</p>
+            <h3 id="capabilityTitle">先把真实问题压到一个可交付边界里。</h3>
+            <p id="capabilityCopy">
+              这意味着我会先决定什么必须进系统、什么暂时不做、什么要让用户自己确认，而不是把所有东西一次堆满。
+            </p>
+            <ul class="capability-points" id="capabilityPoints"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact reveal" id="contact">
+        <div class="contact-copy">
+          <p class="section-kicker">Open to</p>
+          <h2>如果你想要的是几周内能打开、能演示、能继续推进的东西，可以直接聊。</h2>
+          <p>
+            适合的合作方式：交互原型、自动化工作流、小型内部工具、AI 能力包装、内容增长流程试跑。
+          </p>
+        </div>
+
+        <div class="contact-actions">
+          <a class="button button-primary" href="mailto:2111413873@qq.com">发邮件给我</a>
+          <button class="button button-secondary" id="copyEmailFooter" type="button">复制邮箱</button>
+          <a class="button button-ghost" href="https://github.com/CHCH-debug" target="_blank" rel="noreferrer">打开 GitHub</a>
+          <div class="contact-meta">
+            <span>Base: Guangzhou / Hainan</span>
+            <span>Email: 2111413873@qq.com</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/site.js?v=20260420a"></script>
+</body>
+</html>
