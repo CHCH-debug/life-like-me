@@ -1,0 +1,375 @@
+:root {
+  --bg: #f4efe7;
+  --bg-deep: #eadfce;
+  --paper: rgba(255, 252, 247, 0.94);
+  --paper-strong: rgba(255, 250, 243, 0.98);
+  --ink: #1f1b17;
+  --muted: #655a51;
+  --line: rgba(121, 97, 74, 0.18);
+  --accent: #bf5b35;
+  --accent-deep: #8f3d1e;
+  --accent-soft: rgba(191, 91, 53, 0.12);
+  --moss: #5e715e;
+  --shadow: 0 24px 70px rgba(41, 24, 10, 0.12);
+  --radius-xl: 36px;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(191, 91, 53, 0.18), transparent 32%),
+    radial-gradient(circle at top right, rgba(94, 113, 94, 0.18), transparent 26%),
+    linear-gradient(180deg, #faf5ef 0%, var(--bg) 100%);
+}
+
+.page-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 42px;
+}
+
+.hero,
+.grid-two,
+.panel,
+.payment-panel {
+  animation: rise 280ms ease;
+}
+
+.hero,
+.payment-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  gap: 18px;
+}
+
+.hero {
+  margin-bottom: 18px;
+}
+
+.hero-copy,
+.hero-card,
+.panel,
+.payment-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(246, 238, 228, 0.96)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  box-shadow: var(--shadow);
+}
+
+.hero-copy,
+.hero-card,
+.panel,
+.payment-panel {
+  padding: 28px;
+}
+
+.eyebrow,
+.section-kicker,
+.card-label {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(42px, 7vw, 72px);
+  max-width: 10ch;
+}
+
+h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 14px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.lead,
+.card-copy,
+.note,
+.payment-copy,
+.gate-box p,
+.mini-card p,
+.sample-card li,
+.boundary-list li,
+.flow-list li,
+.pending-text {
+  color: var(--muted);
+  line-height: 1.74;
+}
+
+.lead {
+  max-width: 42rem;
+  font-size: 18px;
+  margin: 18px 0 0;
+}
+
+.hero-pills,
+.price-stack,
+.card-grid,
+.sample-grid,
+.pricing-grid,
+.cta-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.hero-pills {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.hero-pills span,
+.price-tag,
+.sample-badge,
+.sample-time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.hero-pills span {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(191, 91, 53, 0.18);
+  color: var(--accent-deep);
+}
+
+.hero-card {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.price-stack {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.price-stack div,
+.price-card {
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  border: 1px solid rgba(191, 91, 53, 0.12);
+  padding: 18px;
+}
+
+.price-stack strong,
+.price-card strong {
+  display: block;
+  font-size: clamp(32px, 5vw, 42px);
+  line-height: 1;
+  margin: 12px 0 10px;
+}
+
+.price-tag {
+  width: fit-content;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+}
+
+.price-tag.muted {
+  background: rgba(94, 113, 94, 0.12);
+  color: var(--moss);
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.panel {
+  margin-bottom: 18px;
+}
+
+.card-grid,
+.sample-grid,
+.pricing-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mini-card,
+.sample-card,
+.price-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.deliverables,
+.boundary-list,
+.flow-list,
+.sample-card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.deliverables {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sample-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sample-badge {
+  background: rgba(94, 113, 94, 0.12);
+  color: var(--moss);
+}
+
+.sample-time {
+  background: rgba(31, 27, 23, 0.06);
+  color: var(--muted);
+}
+
+.sample-card ul,
+.boundary-list,
+.flow-list {
+  display: grid;
+  gap: 10px;
+}
+
+.price-card.is-primary {
+  background:
+    linear-gradient(180deg, rgba(191, 91, 53, 0.12), rgba(191, 91, 53, 0.04)),
+    var(--paper-strong);
+}
+
+.gate-box {
+  margin-top: 18px;
+  border: 1px dashed rgba(191, 91, 53, 0.36);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  background: rgba(255, 248, 242, 0.82);
+}
+
+.gate-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.payment-panel {
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.cta-stack {
+  justify-items: start;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 260px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.cta.is-disabled {
+  background: rgba(31, 27, 23, 0.12);
+  color: rgba(31, 27, 23, 0.56);
+  pointer-events: none;
+}
+
+.cta.is-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(31, 27, 23, 0.1);
+}
+
+.pending-text {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 880px) {
+  .hero,
+  .payment-panel,
+  .grid-two,
+  .card-grid,
+  .sample-grid,
+  .pricing-grid,
+  .hero-pills,
+  .price-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .page-shell {
+    width: min(100%, calc(100% - 20px));
+    padding: 10px 0 24px;
+  }
+
+  .hero-copy,
+  .hero-card,
+  .panel,
+  .payment-panel {
+    padding: 20px;
+    border-radius: 28px;
+  }
+
+  h1 {
+    font-size: 44px;
+  }
+
+  .cta {
+    min-width: 100%;
+  }
+}
