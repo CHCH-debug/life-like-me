@@ -137,7 +137,9 @@ h3 {
 .card-grid,
 .sample-grid,
 .pricing-grid,
-.cta-stack {
+.cta-stack,
+.payment-grid,
+.payment-amounts {
   display: grid;
   gap: 12px;
 }
@@ -296,6 +298,67 @@ h3 {
   margin-bottom: 0;
 }
 
+.payment-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(250px, 0.95fr);
+  margin-top: 22px;
+}
+
+.payment-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.payment-amounts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 14px;
+}
+
+.amount-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(191, 91, 53, 0.08);
+  border: 1px solid rgba(191, 91, 53, 0.16);
+  color: var(--accent-deep);
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.payment-steps {
+  margin-bottom: 16px;
+}
+
+.payment-note,
+.payment-box figcaption {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.qr-box {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  align-content: start;
+}
+
+.payment-qr {
+  display: block;
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(31, 27, 23, 0.08);
+  box-shadow: 0 18px 40px rgba(41, 24, 10, 0.12);
+}
+
 .cta-stack {
   justify-items: start;
 }
@@ -309,18 +372,24 @@ h3 {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 800;
+  border: 0;
   transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
 }
 
-.cta.is-disabled {
-  background: rgba(31, 27, 23, 0.12);
-  color: rgba(31, 27, 23, 0.56);
-  pointer-events: none;
+.cta:not(.is-secondary) {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff9f2;
+  box-shadow: 0 16px 30px rgba(143, 61, 30, 0.24);
 }
 
 .cta.is-secondary {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(31, 27, 23, 0.1);
+  color: var(--ink);
+}
+
+.cta:hover {
+  transform: translateY(-1px);
 }
 
 .pending-text {
@@ -348,7 +417,9 @@ h3 {
   .sample-grid,
   .pricing-grid,
   .hero-pills,
-  .price-stack {
+  .price-stack,
+  .payment-grid,
+  .payment-amounts {
     grid-template-columns: 1fr;
   }
 

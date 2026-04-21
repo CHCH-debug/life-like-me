@@ -8,7 +8,7 @@
     name="description"
     content="信息监控雷达代搭：3 天试跑，盯 5-10 个网页、关键词或账号，交付监控清单、变动推送和每日汇总样例。"
   >
-  <link rel="stylesheet" href="./styles.css?v=20260421a">
+  <link rel="stylesheet" href="./styles.css?v=20260421b">
 </head>
 <body>
   <main class="page-shell">
@@ -154,27 +154,53 @@
           <li>结束后判断是否升级长期版或维护版</li>
         </ol>
         <div class="gate-box">
-          <p class="gate-title">当前唯一待解闸口</p>
+          <p class="gate-title">当前收款入口</p>
           <p>
-            页面已经可以挂，但要形成今天的真实进账，还需要绑定一个可直接收款的链接、
-            收款码或店铺页。
+            现在支持微信扫码先付 250 元锁档期，也可以直接付 499 元开启 3 天试跑。
+            付款后把截图和 5-10 个目标发回你拿到这个页面的原渠道，我按截图锁档并确认交付边界。
           </p>
         </div>
       </article>
     </section>
 
-    <section class="payment-panel">
+    <section class="payment-panel" id="payment-qr">
       <div>
-        <p class="section-kicker">支付占位</p>
-        <h2>收款入口待绑定</h2>
+        <p class="section-kicker">支付入口</p>
+        <h2>微信收款码已绑定</h2>
         <p class="payment-copy">
-          一旦绑定收款链接或收款码，这里就可以直接变成公开商品页入口。
+          这页现在可以直接承担“看说明 -> 扫码付款 -> 回传目标”的成交动作。
+          不需要先聊很久，也不需要先走复杂定制流程。
         </p>
+        <div class="payment-grid">
+          <section class="payment-box">
+            <h3>付款选项</h3>
+            <div class="payment-amounts">
+              <span class="amount-chip">250 元：先锁 3 天试跑排期</span>
+              <span class="amount-chip">499 元：直接开启 3 天试跑</span>
+            </div>
+            <ul class="flow-list payment-steps">
+              <li>扫码后按 250 元或 499 元付款</li>
+              <li>把付款截图和 5-10 个目标发回原渠道</li>
+              <li>当天收到监控方案与交付边界确认</li>
+            </ul>
+            <p class="payment-note">
+              手机端如果不方便扫码，可点开右侧图片后长按保存，再在微信里识别。
+            </p>
+          </section>
+          <figure class="payment-box qr-box">
+            <img
+              class="payment-qr"
+              src="./assets/firelove-wechat-payment-qr-latest.jpg"
+              alt="信息监控雷达代搭微信收款码"
+            >
+            <figcaption>微信扫码付款。付款后请回传截图和你最想盯的 5-10 个目标。</figcaption>
+          </figure>
+        </div>
       </div>
       <div class="cta-stack">
-        <a class="cta is-disabled" href="#payment-pending" aria-disabled="true">立即锁定 3 天试跑</a>
-        <a class="cta is-secondary is-disabled" href="#payment-pending" aria-disabled="true">先付 250 元启动</a>
-        <p class="pending-text">支付链接 / 收款码：待绑定</p>
+        <a class="cta" href="./assets/firelove-wechat-payment-qr-latest.jpg" target="_blank" rel="noreferrer">打开收款码</a>
+        <a class="cta is-secondary" href="#payment-qr">先付 250 元锁档期</a>
+        <p class="pending-text">当前已支持微信收款。付款后把截图和目标清单发回原渠道即可。</p>
       </div>
     </section>
   </main>
